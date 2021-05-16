@@ -13,7 +13,8 @@ void draw()
 
 drawCartesianPlane();
 drawsLinearFunction();
-
+drawsQuadraticFunction();
+drawsSineWave();
 }
 
 void drawCartesianPlane()
@@ -31,18 +32,47 @@ for (int i = -300; i <= 300; i += 10)
  line(-2,i, 2, i);
 }
 }
+
 void drawsQuadraticFunction()
 {
-  
+   // f(x) = x^2−15x−3  
+  color yellow = color (255,255,0);
+fill(yellow);
+noStroke();
+for (float x = -30; x <= 30; x += 0.1f)
+{
+  circle (x, (float)Math.pow(x,2) - (15 * x) - 3 ,5);
 }
+}
+
+
 void drawsLinearFunction()
 {
-color white = color (255,255,255);
-fill(white);
-noStroke();
-for (int x = -200; i <= 200; x++)
+  // f(x) −5x +30
+color purple = color (255,0,255);
+fill(purple);
+stroke(purple);
+for (int x = -50; x <= 50; x++)
 {
-  circle (x,x+2,5);
+  circle (x, (x * -5) + 30, 5);
+}
+
+}
+
+void drawsSineWave()
+{
+  //A * sin((2 * PI * Frequency) * time + phase/radians/radius?/ something)
+  //(amplitude * (float)Math.sin((2 * PI * frequency) * x)
+color red = color (255,0,0);
+fill(red);
+noStroke();
+float radius = 50;
+float amplitude = 200;
+float frequency = 10;
+
+for (int x = 0; x <= 360; x++)
+{
+  circle ( (float)Math.cos(x) * radius , (float)Math.sin(x) * radius, 2);
 }
 
 }
