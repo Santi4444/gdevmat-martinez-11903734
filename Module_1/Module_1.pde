@@ -63,16 +63,20 @@ void drawsSineWave()
 {
   //A * sin((2 * PI * Frequency) * time + phase/radians/radius?/ something)
   //(amplitude * (float)Math.sin((2 * PI * frequency) * x)
+  //  circle ( (float)Math.cos(x) * radius , (float)Math.sin(x) * radius, 2);
+
 color red = color (255,0,0);
 fill(red);
-noStroke();
-float radius = 50;
-float amplitude = 200;
-float frequency = 10;
+stroke(red);
 
-for (int x = 0; x <= 360; x++)
+
+float amplitude = 20;
+float frequency = 5;
+
+for (float x = -25 ; x <= 25; x += 0.1f)
 {
-  circle ( (float)Math.cos(x) * radius , (float)Math.sin(x) * radius, 2);
+  circle ( x * frequency, (amplitude *(float)Math.sin(x) ), 5);
+  
 }
 
 }
