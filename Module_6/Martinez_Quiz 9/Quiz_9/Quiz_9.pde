@@ -1,5 +1,4 @@
-
-Walker[] walkers = new Walker[8];
+Walker[] walkers = new Walker[9];
 
 //Quiz 9
 
@@ -15,10 +14,10 @@ void setup()
  // int posX = 0;
   int posY = 0;
  
- for (int i = 0; i < 8; i++)
+ for (int i = 0; i < 9; i++)
     {
       //posX = 2 * (Window.windowWidth / 20) * (i - 5);
-      posY = 2 * (Window.windowHeight / 20) * (i - 5);
+      posY = 2* (Window.windowHeight / 9) * (i - (9 / 2 ));
       walkers[i] = new Walker();
       walkers[i].circlesSet(); //color
       walkers[i].mass = i;
@@ -27,7 +26,14 @@ void setup()
     }
 }
 
- 
+ void mousePressed() 
+{
+  if (mouseButton == LEFT)
+  {
+     println("Reset");
+     setup();
+  } 
+ }
   
 void draw()
 {
@@ -53,24 +59,22 @@ for (Walker w : walkers)
   //PVector gravity = new PVector( 0.2 * w.mass, 0); 
       //PVector gravity = new PVector(0, -0.15 * w.mass); // With no air friction 
        
-   
+    w.render();
+    w.update();
+    w.applyForce(wind);
      
-       w.applyForce(wind);
-     
-     println(" Hello Number" + w.mew);
+     //println(" Hello Number" + w.mew);
     
       if (w.position.x >= 0)
     {
       
       w.mew = 0.4f;
-      println(" Hello Number2" + w.mew);
+      //println(" Hello Number2" + w.mew);
       w.applyForce(friction);
     }else
     {
     w.applyForce(friction);
     }
-      w.render();
-     w.update();
      
      
      if (w.position.y <= Window.bottom)
