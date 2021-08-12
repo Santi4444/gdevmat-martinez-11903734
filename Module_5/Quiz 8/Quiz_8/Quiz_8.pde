@@ -39,10 +39,12 @@ for (int i = 0; i < 10; i++)
      if (walkers[i].position.y <= Window.bottom)
     {
     walkers[i].velocity.y *= -1; // 3rd Law :)}
+     walkers[i].position.y = Window.bottom;
     }
     if (walkers[i].position.x >= Window.right)
     {
     walkers[i].velocity.x *= -1; 
+    walkers[i].position.x = Window.right;
     }
     if (walkers[i].position.x <= Window.left)
     {
