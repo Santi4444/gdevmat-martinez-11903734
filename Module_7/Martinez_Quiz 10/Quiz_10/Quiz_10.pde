@@ -1,5 +1,5 @@
 Liquid ocean = new Liquid(0, -100, Window.right, Window.bottom, 0.1f);
-Walker myWalker = new Walker();
+//Walker myWalker = new Walker();
 Walker[] walkers = new Walker[10];
 
 void setup()
@@ -17,7 +17,8 @@ void setup()
 */
  for (int i = 0; i < 10; i++)
     {
-      posX = 2 * (Window.windowWidth / 10) * (i - 5);
+      //2* (Window.windowHeight / 9) * (i - (9 / 2 ));
+      posX = 2 * (Window.windowWidth / 10) * (i - (10 / 2));
       
       walkers[i] = new Walker();
       walkers[i].circlesSet(); //color
@@ -28,34 +29,60 @@ void setup()
 
 }
 
-
-
-void draw()
-{
-background(255);
-
-ocean.render();
 //myWalker.render();
 //myWalker.update();
 
 //PVector gravity = new PVector( 0, -0.25 * myWalker.mass); 
 //myWalker.applyForce(gravity); // apply gravity
+ void mousePressed() 
+{
+  if (mouseButton == LEFT)
+  {
+     println("Reset");
+     setup();
+  } 
+ }
+void draw()
+{
+background(255);
 
-float c = 0.01f;
- float normal = 1;
- float frictionMagnitude = c * normal;
- PVector friction = myWalker.velocity.copy(); 
+ocean.render();
+
+PVector wind = new PVector(.1,0);
+
  // F = -uNv
  for (Walker w : walkers)
 {
-  PVector gravity = new PVector( 0, -0.15f * w.mass); 
-  PVector wind = new PVector(.1,0);
+  PVector gravity = new PVector( 0, -0.15f * w.mass);  
+  
+ 
+  float mew = 0.01f;
+  float normal = 1;
+  float frictionMagnitude = mew * normal;
+  PVector friction = w.velocity.copy();
+  friction.mult(-1);
+  friction.normalize();
+  friction.mult(frictionMagnitude);
+ 
   w.render();
   w.update();
+  w.applyForce(friction);
+ // w.applyForce(friction.mult(-1).normalize().mult(frictionMagnitude));
+ 
   w.applyForce(gravity);
-  w.applyForce(wind);
   
-  if (w.position.y <= Window.bottom)
+ 
+  if(ocean.isCollidingWith(w))
+  {
+  println("Colliding!");
+  PVector dragForce = ocean.calculateDragForce(w);
+  w.applyForce(dragForce);
+  }else
+  {
+  w.applyForce(wind);
+  }
+  
+   if (w.position.y <= Window.bottom)
     {
       w.position.y = Window.bottom;
       w.velocity.y *= -1; 
@@ -65,13 +92,8 @@ float c = 0.01f;
       w.position.x = Window.right;
       w.velocity.x *= -1; 
     }
-  if(ocean.isCollidingWith(w))
-{
-  println("Colliding!");
-  PVector dragForce = ocean.calculateDragForce(w);
-  w.applyForce(dragForce);
   
-}
+  
   
 }
  

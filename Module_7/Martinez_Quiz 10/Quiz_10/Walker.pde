@@ -5,6 +5,7 @@ public class Walker
   public PVector velocity = new PVector();
   public PVector acceleration = new PVector();   
   
+  public float mew =0.01;
   public float velocityLimit = 10;
   public float scale = 15;
   public float mass = 1;
