@@ -46,7 +46,11 @@ public class Walker
   println(mousePos().x + " and " + mousePos().y);
  
   PVector mouse2  = mousePos();
- mouse2.normalize().mult(.2);
+  mouse2.x -= this.position.x;
+  mouse2.y -= this.position.y;
+  
+ mouse2.normalize();
+ /*
  if(this.position.x > mouse2.x)
    {
    this.acceleration.x = -mouse2.x;
@@ -64,8 +68,8 @@ public class Walker
    {
    this.acceleration.y = mouse2.y;
    } 
-
- //this.acceleration = mouse2;
+*/
+ this.acceleration = mouse2.mult(.2);
  this.velocity.add(this.acceleration); 
  this.velocity.limit(velocityLimit);
   this.position.add(this.velocity);

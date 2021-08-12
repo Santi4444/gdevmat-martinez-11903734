@@ -3,7 +3,7 @@ Walker[] walkers = new Walker[100];
 
 void setup()
 {
-  size(1080,720,P3D);
+  size(1280,720,P3D);
   camera(0,0, Window.eyeZ, 0,0,0,0, -1,0);
 
 //myWalker.acceleration = new PVector(-0.01, 0.1);
@@ -41,7 +41,7 @@ for (int i = 0; i < 100; i++)
        walkers[i].render();
        
       
-      walkers[i].checkEdges();
+     // walkers[i].checkEdges();
       //walkers[i].mouse2.normalize().mult(.2);
        
     }
