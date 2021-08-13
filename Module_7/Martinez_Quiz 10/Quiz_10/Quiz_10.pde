@@ -15,7 +15,7 @@ void setup()
       
       walkers[i] = new Walker();
       walkers[i].circlesSet(); //color
-      walkers[i].mass = i + 2;
+      walkers[i].mass = i + 1;
       walkers[i].scale = walkers[i].mass * 15;
       walkers[i].position = new PVector(posX, 300);
     }
