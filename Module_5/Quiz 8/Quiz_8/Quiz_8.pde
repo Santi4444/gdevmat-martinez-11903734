@@ -19,7 +19,7 @@ void setup()
     {
       walkers[i] = new Walker();
       walkers[i].circlesSet(); //color
-      walkers[i].mass = i;
+      walkers[i].mass = i + 1;
       walkers[i].scale = walkers[i].mass * 15;
       walkers[i].position.x = -500;
       walkers[i].position.y = 200;
