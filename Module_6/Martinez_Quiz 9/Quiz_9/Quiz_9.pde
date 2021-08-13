@@ -1,4 +1,4 @@
-Walker[] walkers = new Walker[9];
+Walker[] walkers = new Walker[8];
 
 //Quiz 9
 
@@ -14,13 +14,13 @@ void setup()
  // int posX = 0;
   int posY = 0;
  
- for (int i = 0; i < 9; i++)
+ for (int i = 0; i < 8; i++)
     {
       //posX = 2 * (Window.windowWidth / 20) * (i - 5);
-      posY = 2* (Window.windowHeight / 9) * (i - (9 / 2 ));
+      posY = 2* (Window.windowHeight / 8) * (i - (8 / 2 ));
       walkers[i] = new Walker();
       walkers[i].circlesSet(); //color
-      walkers[i].mass = i;
+      walkers[i].mass = i + 1;
       walkers[i].scale = walkers[i].mass * 15;
       walkers[i].position = new PVector(-500, posY);
     }
