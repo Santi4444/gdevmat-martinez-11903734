@@ -1,5 +1,4 @@
 Liquid ocean = new Liquid(0, -100, Window.right, Window.bottom, 0.1f);
-//Walker myWalker = new Walker();
 Walker[] walkers = new Walker[10];
 
 void setup()
@@ -8,13 +7,7 @@ void setup()
   camera(0,0, Window.eyeZ, 0,0,0,0, -1,0);
    int posX = 0;
    
-/*   
-  myWalker.position = new PVector(0,300);
-  myWalker.g = 0;
-  myWalker.b = 0;
-  myWalker.mass = 5;
-  myWalker.scale = myWalker.mass * 10;
-*/
+
  for (int i = 0; i < 10; i++)
     {
       //2* (Window.windowHeight / 9) * (i - (9 / 2 ));
@@ -22,18 +15,13 @@ void setup()
       
       walkers[i] = new Walker();
       walkers[i].circlesSet(); //color
-      walkers[i].mass = i;
+      walkers[i].mass = i + 2;
       walkers[i].scale = walkers[i].mass * 15;
       walkers[i].position = new PVector(posX, 300);
     }
 
 }
 
-//myWalker.render();
-//myWalker.update();
-
-//PVector gravity = new PVector( 0, -0.25 * myWalker.mass); 
-//myWalker.applyForce(gravity); // apply gravity
  void mousePressed() 
 {
   if (mouseButton == LEFT)
@@ -56,9 +44,9 @@ PVector wind = new PVector(.1,0);
   PVector gravity = new PVector( 0, -0.15f * w.mass);  
   
  
-  float mew = 0.01f;
+  //float mew = 0.01f;
   float normal = 1;
-  float frictionMagnitude = mew * normal;
+  float frictionMagnitude = w.mew * normal;
   PVector friction = w.velocity.copy();
   friction.mult(-1);
   friction.normalize();
@@ -66,12 +54,13 @@ PVector wind = new PVector(.1,0);
  
   w.render();
   w.update();
-  w.applyForce(friction);
+  
  // w.applyForce(friction.mult(-1).normalize().mult(frictionMagnitude));
  
   w.applyForce(gravity);
+  w.applyForce(friction);
   
- 
+ //Collides with ocean
   if(ocean.isCollidingWith(w))
   {
   println("Colliding!");
@@ -80,8 +69,9 @@ PVector wind = new PVector(.1,0);
   }else
   {
   w.applyForce(wind);
-  }
   
+  }
+  //Screen Collision
    if (w.position.y <= Window.bottom)
     {
       w.position.y = Window.bottom;
@@ -96,7 +86,19 @@ PVector wind = new PVector(.1,0);
   
   
 }
- 
+//Walker myWalker = new Walker();
+/*   
+  myWalker.position = new PVector(0,300);
+  myWalker.g = 0;
+  myWalker.b = 0;
+  myWalker.mass = 5;
+  myWalker.scale = myWalker.mass * 10;
+*/
+//myWalker.render();
+//myWalker.update();
+
+//PVector gravity = new PVector( 0, -0.25 * myWalker.mass); 
+//myWalker.applyForce(gravity); // apply gravity
  /*
  myWalker.applyForce(friction.mult(-1).normalize().mult(frictionMagnitude)); //apply friction to Walker
 
